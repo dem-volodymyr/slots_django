@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Slots - {% block title %}Pygame Slots Reimagined{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'slots_app/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Fepsino Slots</h1>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Fepsino - &copy; 2025</p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

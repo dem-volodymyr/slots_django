@@ -1,0 +1,71 @@
+{% extends 'slots_app/base.html' %}
+{% load static %}
+
+{% block title %}Slot Machine{% endblock %}
+
+{% block content %}
+<div class="game-container">
+    <div class="machine-container">
+        <div class="reels-container">
+            <div class="reel" id="reel-0">
+                <div class="symbol-container"></div>
+                <div class="symbol-container"></div>
+                <div class="symbol-container"></div>
+            </div>
+            <div class="reel" id="reel-1">
+                <div class="symbol-container"></div>
+                <div class="symbol-container"></div>
+                <div class="symbol-container"></div>
+            </div>
+            <div class="reel" id="reel-2">
+                <div class="symbol-container"></div>
+                <div class="symbol-container"></div>
+                <div class="symbol-container"></div>
+            </div>
+            <div class="reel" id="reel-3">
+                <div class="symbol-container"></div>
+                <div class="symbol-container"></div>
+                <div class="symbol-container"></div>
+            </div>
+            <div class="reel" id="reel-4">
+                <div class="symbol-container"></div>
+                <div class="symbol-container"></div>
+                <div class="symbol-container"></div>
+            </div>
+        </div>
+        
+        <div class="ui-container">
+            <div class="player-info">
+                <p class="balance">Balance: $<span id="balance">{{ player.balance }}</span></p>
+                <p class="bet-size">Bet Size: $<span id="bet-size">{{ player.bet_size }}</span></p>
+                
+                <div class="bet-controls">
+                    <button id="decrease-bet">-</button>
+                    <button id="increase-bet">+</button>
+                </div>
+            </div>
+            
+            <div class="spin-button-container">
+                <button id="spin-button" class="spin-button">SPIN</button>
+            </div>
+            
+            <div id="win-message" class="win-message"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Pass Django variables to JavaScript
+    const SYMBOLS = {{ symbols|safe }};
+    const initialPlayerData = {
+        balance: {{ player.balance }},
+        betSize: {{ player.bet_size }},
+        lastPayout: "{{ player.last_payout }}",
+        totalWon: {{ player.total_won }},
+        totalWager: {{ player.total_wager }}
+    };
+</script>
+<script src="{% static 'slots_app/js/slots.js' %}"></script>
+{% endblock %}
